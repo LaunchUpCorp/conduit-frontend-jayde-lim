@@ -1,7 +1,14 @@
 import React from "react";
+import Header from "./Header";
+import Body from "./Body";
 
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <>
+      <Header/>
+      <Body/>
+    </>
+  )
 }
 
 export default App;
