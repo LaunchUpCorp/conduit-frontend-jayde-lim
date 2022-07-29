@@ -2,11 +2,11 @@ import React from "react";
 
 function Body() {
     return (
-      <div className="flex flex-col sm:flex-row-reverse items-start h-screen pt-10 min-w-[610px] ml-4 mr-4">
+      <div className="flex flex-col sm:flex-row-reverse items-start h-screen pt-10 min-w-[456px] ml-4 mr-4">
 
         {/*Popular Tag pane on the right side will move to top on smaller view*/}
         <div className="w-full sm:w-[35%] sm:ml-4">
-          <p className="bg-slate-200 h-12 w-2/4 min-w-fit p-1.5 rounded-md">Popular Tags</p>
+          <p className="bg-slate-200 h-12 w-full sm:w-2/4 min-w-fit p-1.5 rounded-md">Popular Tags</p>
         </div>
 
         {/*Feed pane on the left side will move under the Popular Tag pane on a smaller view*/}
