@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Header() {
+function HomepageBanner() {
     return (
       <div className="bg-[#5cb85c] text-white flex items-center justify-center h-48 w-full min-w-[456px]">
         <div>
@@ -11,4 +11,4 @@ function Header() {
     )
   }
 
-export default Header;
+export default HomepageBanner;

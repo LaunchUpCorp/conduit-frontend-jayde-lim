@@ -1,16 +1,16 @@
 import React from "react";
-import Menu from "./Menu";
-import ContentArea from "./ContentArea";
+import FeedMenu from "./FeedMenu";
+import ArticleFeed from "./ArticleFeed";
 
-function Main() {
+function MainFeedBoard() {
   return (
     <div className="w-full sm:w-[65%]">
       <div className="ml-0 sm:ml-20 lg:ml-60 flex flex-col justify-center sm:justify-start">
-        <Menu />
-        <ContentArea />
+        <FeedMenu />
+        <ArticleFeed />
       </div>
     </div>
   )
 }
 
-export default Main;
+export default MainFeedBoard;

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Menu() {
+function FeedMenu() {
   return (
     <div className="flex flex-row h-12">
       <p className="text-[#5cb85c] border-b-[#5cb85c] border-b-2 w-[15%] min-w-fit p-1.5 text-center">Global Feed</p>
@@ -9,4 +9,4 @@ function Menu() {
   )
 }
 
-export default Menu;
+export default FeedMenu;
