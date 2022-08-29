@@ -6,8 +6,8 @@ import SignInPage from "./pages/SignInPage";
 function App() {
   return (
     // <Homepage/>
-    //<SignUpPage />
-    <SignInPage />
+    <SignUpPage />
+    //<SignInPage />
   )
 }
 
