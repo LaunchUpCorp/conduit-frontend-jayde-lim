@@ -20,10 +20,24 @@ function AuthForm (props) {
       }
     }
 
-    const urlForUsers = endpointApiUrl.concat("/","users")
+    const urlForUsers = endpointApiUrl.concat("/users")
   
     let register = await axios.post(urlForUsers, data)
-    let tokenInfo = sessionStorage.setItem('jwt', register.data.user.token);
+    
+    sessionStorage.setItem('jwt', register.data.user.token);
+  }
+
+  async function submitSignInData() {
+    const data = {
+      "user": {
+      email,
+      password
+      }
+    }
+    const urlForLogIn = endpointApiUrl.concat("/users/login")
+  
+    let authentication = await axios.post(urlForLogIn, data)
+    sessionStorage.setItem('jwt', authentication.data.user.token);
   }
 
   function onHandleChange (data) {
@@ -39,6 +53,9 @@ function AuthForm (props) {
       case "Password":
         setPassword(data.value);
         break;
+
+      default:
+        throw new Error("please check handle change data. This data name is not supported by the AuthForm")
     }
   }
 
@@ -61,7 +78,7 @@ function AuthForm (props) {
             })
           }
 
-          <button type="button" onClick={submitData} className="bg-[#5cb85c] text-white h-16 w-36 rounded-md self-center sm:self-end text-xl">{props.buttonText}</button>
+          <button type="button" onClick={props.buttonText === "Sign In"? submitSignInData : submitData} className="bg-[#5cb85c] text-white h-16 w-36 rounded-md self-center sm:self-end text-xl">{props.buttonText}</button>
         </div>
       </div>
     </div>
