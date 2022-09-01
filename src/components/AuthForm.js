@@ -3,12 +3,13 @@ import InputForm from "./Form";
 import {useState} from "react";
 import axios from 'axios';
 
-//let axios = require('axios');
 
 function AuthForm (props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const endpointApiUrl = process.env.REACT_APP_ENDPOINT_URL;
 
   async function submitData () {
     const data = {
@@ -19,17 +20,25 @@ function AuthForm (props) {
       }
     }
 
-    let register = await axios.post('https://launchup-prisma.herokuapp.com/api/users', data)
+    const urlForUsers = endpointApiUrl.concat("/","users")
+  
+    let register = await axios.post(urlForUsers, data)
     let tokenInfo = sessionStorage.setItem('jwt', register.data.user.token);
   }
 
   function onHandleChange (data) {
-    if (data.name === "Username") {
-      setUsername(data.value)
-    } else if(data.name === "Email") {
-      setEmail(data.value)
-    } else {
-      setPassword(data.value)
+    switch (data.name) {
+      case "Username":
+        setUsername(data.value);
+        break;
+      
+      case "Email":
+        setEmail(data.value);
+        break;
+
+      case "Password":
+        setPassword(data.value);
+        break;
     }
   }
 
@@ -43,14 +52,15 @@ function AuthForm (props) {
       <div className="flex items-center justify-center px-4">
         <div className="flex flex-col w-[640px] gap-y-5">
           {
-            props.fields.map(field => {
+            props.fields.map((field, index) => {
               return <InputForm 
+                        key={index}
                         fields={field} 
                         handleChange={onHandleChange}
                       />
             })
           }
-          
+
           <button type="button" onClick={submitData} className="bg-[#5cb85c] text-white h-16 w-36 rounded-md self-center sm:self-end text-xl">{props.buttonText}</button>
         </div>
       </div>
