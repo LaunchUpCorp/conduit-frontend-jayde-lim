@@ -20,11 +20,20 @@ function AuthForm (props) {
       }
     }
 
-    const urlForUsers = endpointApiUrl.concat("/users")
-  
-    let register = await axios.post(urlForUsers, data)
-    
-    sessionStorage.setItem('jwt', register.data.user.token);
+    const urlForUsers = `${endpointApiUrl}/users`
+
+    try {
+      let register = await axios.post(urlForUsers, data)
+      sessionStorage.setItem('jwt', register.data.user.token);
+    } catch(error) {
+    if (error.response) {
+      console.log(`Server responded with some error msg. UI for the users might need to be created.`)
+    } else if (error.request) {
+     console.log(`Request was successful but no response. UI for the users might need to be created.`)
+    } else {
+      console.log(error)
+      }
+    }
   }
 
   async function submitSignInData() {
@@ -34,10 +43,20 @@ function AuthForm (props) {
       password
       }
     }
-    const urlForLogIn = endpointApiUrl.concat("/users/login")
+    const urlForLogIn = `${endpointApiUrl}/users/login`
   
-    let authentication = await axios.post(urlForLogIn, data)
-    sessionStorage.setItem('jwt', authentication.data.user.token);
+    try {
+      let authentication = await axios.post(urlForLogIn, data)
+      sessionStorage.setItem('jwt', authentication.data.user.token);
+    } catch(error) {
+      if (error.response) {
+        console.log(`Server responded with some error msg. UI for the users might need to be created.`)
+      } else if (error.request) {
+        console.log(`Request was successful but no response. UI for the users might need to be created.`)
+      } else {
+        console.log(error)
+      }
+    }
   }
 
   function onHandleChange (data) {
